@@ -7,7 +7,7 @@ def run(api_key, model_key, model_inputs):
         model_key = model_key, 
         model_inputs = model_inputs
     )
-    return out
+    yield out
 
 def start(api_key, model_key, model_inputs):
     out = start_main(
