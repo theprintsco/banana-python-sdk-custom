@@ -30,13 +30,13 @@ def run_main(api_key, model_key, model_inputs):
             "apiVersion": result["apiVersion"],
             "modelOutputs": result["modelOutputs"]
         }
-        return dict_out
+        yield dict_out
 
     # else it's long running, so poll for result
     while True:
         dict_out = check_api(api_key, result["callID"])
         if dict_out['message'].lower() == "success":
-            return dict_out
+            yield dict_out
 
 def start_main(api_key, model_key, model_inputs):
     result = start_api(api_key, model_key, model_inputs, start_only=True)
